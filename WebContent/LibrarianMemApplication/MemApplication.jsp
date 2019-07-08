@@ -79,7 +79,7 @@ int sumcount=0;
 int count=0;
 try {
 Class.forName("com.mysql.jdbc.Driver");
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
 String query = "select * from mem ORDER BY id DESC LIMIT 1";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);
@@ -168,8 +168,8 @@ Connection con = null;
 String url = "jdbc:mysql://localhost:3306/";
 String db = "lib";
 String driver = "com.mysql.jdbc.Driver";
-String userName ="rahul";
-String password="pass";
+String userName ="root";
+String password="password";
 
 Statement st;
 try{

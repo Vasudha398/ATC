@@ -11,7 +11,7 @@ String lid=request.getParameter("lid");
 try{
 Connection conn = null;
 Class.forName("com.mysql.jdbc.Driver");
-conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib","rahul", "pass");
+conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib","root", "password");
 Statement st=null;
 st=conn.createStatement();
 st.executeUpdate("update librarian set lname='"+lname+"',laddress='"+laddress+"',lcontact='"+lcontact+"',lemail='"+lemail+"',lcity='"+lcity+"' where id="+num);

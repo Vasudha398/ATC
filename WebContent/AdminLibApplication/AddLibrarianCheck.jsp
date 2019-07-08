@@ -15,7 +15,7 @@
     try
     {
     Class.forName("com.mysql.jdbc.Driver");
-    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
     Statement st=conn.createStatement();
     int i=st.executeUpdate("insert into librarian(lid,lname,currentpassword,laddress,lcontact,lemail,lcity) values('"+id+"','"+lname+"','"+lcurrentpassword+"','"+laddress+"','"+lcontact+"','"+lemail+"','"+lcity+"')");
     response.setContentType("text/html");

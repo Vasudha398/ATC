@@ -26,7 +26,7 @@ public class LibLogin extends HttpServlet {
 		{
 		Class.forName("com.mysql.jdbc.Driver");
 		String sql = "SELECT * FROM librarian where lid ='"+eid+"' and currentpassword ='"+password+"'";
-		Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+		Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
 		Statement st=conn.createStatement();
 		ResultSet rs = st.executeQuery(sql);
 

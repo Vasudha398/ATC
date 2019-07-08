@@ -13,7 +13,7 @@ Connection con=null;
 String pass="";
 try{
 Class.forName("com.mysql.jdbc.Driver");
-con = DriverManager.getConnection(connurl, "rahul", "pass");
+con = DriverManager.getConnection(connurl, "root", "password");
 Statement st=con.createStatement();
 ResultSet rs=st.executeQuery("select * from admin where Uid='"+memid+"' and Password='"+currentPassword+"'");
 while(rs.next()){

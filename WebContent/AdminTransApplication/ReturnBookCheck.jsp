@@ -5,7 +5,7 @@ String no=request.getParameter("id");
 int id=Integer.parseInt(no);
 try{
 Class.forName("com.mysql.jdbc.Driver");
-Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
 Statement st=con.createStatement();
 Statement st1=con.createStatement();
 Statement st2=con.createStatement();

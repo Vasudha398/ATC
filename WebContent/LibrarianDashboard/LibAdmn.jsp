@@ -50,7 +50,7 @@ ResultSet resultSet = null;
 <div class="jumbotron text-center" style="background-color: powderblue;height:150px;margin-bottom:0;">
   <h2 ><strong><img src="../atclogo.png" width="100" height="70">&nbsp;&nbsp;AMERICAN TOWER CORPORATION</strong></h2>
 </div>
-<jsp:include page="HeaderPage1.jsp"/> 
+<jsp:include page="HeaderPage2.jsp"/> 
 
   <!--Main layout-->
 <main>
@@ -409,7 +409,7 @@ e.printStackTrace();
     <h5 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     ONGOING DUES</h5>
     </div>
-  <jsp:include page="BooksDue.jsp"/>
+  <jsp:include page="../AdminDashboard/BooksDue.jsp"/>
     <!--/Card image-->
 <!--row 2 over-->
 
@@ -420,7 +420,7 @@ e.printStackTrace();
     <h5 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     USER DEFAULTERS</h5>
     </div>
-   <jsp:include page="Defaulters.jsp"/>
+   <jsp:include page="../AdminDashboard/Defaulters.jsp"/>
   
     <!--/Card image-->
 <!--row 3 over-->

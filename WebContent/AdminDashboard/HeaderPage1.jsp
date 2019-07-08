@@ -52,9 +52,9 @@
 
 <body>
 <div class="topnav" id="currlink">
-  <a href="Index1.jsp">Home</a>
-  <a href="DashAdm.jsp">Admin Dashboard</a>
-  <a href="ExecDash.jsp">Executive Dashboard</a>
+  <a href="../navadmin.jsp">Home</a>
+  <a href="../AdminDashboard/DashAdm.jsp">Admin Dashboard</a>
+  <a href="../AdminDashboard/ExecDash1.jsp">Executive Dashboard</a>
   <a href="#about">Reporting</a>
 </div>
 

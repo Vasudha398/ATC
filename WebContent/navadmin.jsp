@@ -21,13 +21,14 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 2px 2px;
   cursor: pointer;
   border-radius: 20px;
 }
 
 .button3 {background-color: #f44336;} /* Red */ 
 .button4 {background-color: #800080;} /* Gray */ 
+.button5 {background-color: #8000ff;} /* Black */
 .button5 {background-color: #8000ff;} /* Black */
 .button6{padding: 30px 100px;background-color: #8000ff;}
 .amt-head-stripe {
@@ -119,6 +120,11 @@ if(session.getAttribute("username")==null)
 	<form action="AdminTransApplication/TransApplication.jsp">
  	   <button class="button button3" style="width:360px">TRANSACTIONS</button>
 	</form> 
+	<br>
+	<form action="AdminDashboard/DashAdm.jsp">
+ 	   <button class="button button8" style="width:360px">DASHBOARD</button>
+	</form> 
+	
   </div>
 </div>
 </body>

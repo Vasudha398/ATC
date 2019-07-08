@@ -116,6 +116,11 @@ if(session.getAttribute("libusername")==null)
 	<form action="LibrarianTransApplication/TransApplication.jsp">
  	   <button class="button button3" style="width:360px">TRANSACTIONS</button>
 	</form> 
+	<br>
+	<form action="LibrarianDashboard/LibAdmn.jsp">
+ 	   <button class="button button8" style="width:360px">DASHBOARD</button>
+	</form> 
+	
   </div>
 </div>
 </body>

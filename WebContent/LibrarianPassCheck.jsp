@@ -9,7 +9,7 @@ try
 {
 Class.forName("com.mysql.jdbc.Driver");
 String sql = "SELECT * FROM librarian where bdeleted='n'";
-Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
 Statement st=conn.createStatement();
 ResultSet rs = st.executeQuery(sql);
 int count=0;

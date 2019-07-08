@@ -14,7 +14,7 @@ String qoh=request.getParameter("qoh");
 try{
 Connection conn = null;
 Class.forName("com.mysql.jdbc.Driver");
-conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib","rahul", "pass");
+conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib","root", "password");
 Statement st=null;
 st=conn.createStatement();
 st.executeUpdate("update books set bookno='"+bookno+"',bookname='"+bookname+"',author='"+author+"',author='"+author+"',publisher='"+publisher+"',publication_year='"+publication_year+"',language='"+language+"',bcategoryid='"+bcategoryid+"',isbn_no='"+isbn_no+"',qoh='"+qoh+"' where id="+num);

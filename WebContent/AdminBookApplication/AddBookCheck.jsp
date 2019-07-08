@@ -17,7 +17,7 @@
     try
     {
     Class.forName("com.mysql.jdbc.Driver");
-    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
     Statement st=conn.createStatement();
     int i=st.executeUpdate("insert into books(bookno,bookname,author,publisher,publication_year,language,bcategoryid,qoh,bookprice) values('"+bookno+"','"+bookname+"','"+author+"','"+publisher+"','"+publication_year+"','"+language+"','"+bcategoryid+"','"+qoh+"','"+bookprice+"')");
     response.setContentType("text/html");

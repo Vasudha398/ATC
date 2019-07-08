@@ -169,8 +169,8 @@ Connection con = null;
 String url = "jdbc:mysql://localhost:3306/";
 String db = "lib";
 String driver = "com.mysql.jdbc.Driver";
-String userName ="rahul";
-String password="pass";
+String userName ="root";
+String password="password";
 String bookno=request.getParameter("bookno");
 Statement st;
 try{

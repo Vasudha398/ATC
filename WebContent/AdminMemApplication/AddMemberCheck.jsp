@@ -16,7 +16,7 @@
     try
     {
     Class.forName("com.mysql.jdbc.Driver");
-    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
     Statement st=conn.createStatement();
     int i=st.executeUpdate("insert into mem(memid,mname,maddress,mcontact,memail,mcity,memtyp,superviser_name,superviser_emailid) values('"+memid+"','"+mname+"','"+maddress+"','"+mcontact+"','"+memail+"','"+mcity+"','"+memtyp+"','"+superviser_name+"','"+superviser_emailid+"')");
     response.setContentType("text/html");

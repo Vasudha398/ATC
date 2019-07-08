@@ -75,7 +75,7 @@ int no=Integer.parseInt(id);
 int sumcount=0;
 try {
 Class.forName("com.mysql.jdbc.Driver");
-Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
 String query = "select * from books where id='"+no+"'";
 Statement st = conn.createStatement();
 ResultSet rs = st.executeQuery(query);

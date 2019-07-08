@@ -10,7 +10,7 @@ try
 {
 Class.forName("com.mysql.jdbc.Driver");
 String sql = "SELECT * FROM admin where Uid='"+uid1+"' and password='"+pass1+"'";
-Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "rahul", "pass");
+Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/lib", "root", "password");
 Statement st=conn.createStatement();
 ResultSet rs = st.executeQuery(sql);
 
