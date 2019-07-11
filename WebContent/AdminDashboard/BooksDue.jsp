@@ -11,8 +11,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+
   <title>BooksDue</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -22,6 +22,16 @@
   <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="../css/style.css" rel="stylesheet">
+  <style type="text/css">
+   .my-custom-scrollbar {
+position: center;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+</style>
 
 <title>Insert title here</title>
 </head>
@@ -52,14 +62,14 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 <section class="mb-5">
-<style> .equal-width td {   width: 21%; } </style>
-
-<table class="equal-width" align="center" cellpadding="7" cellspacing="5" border="1">
+<div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
+<table id="dtDynamicVerticalScrollExample" width="100%" class="table table-striped w-auto table-bordered table-hover table-fixed" align="center">
 <tr>
 
 </tr>
 <tr  bgcolor="white">
 <td><b>BookNo</b></td>
+<td><b>BookName</b></td>
 <td><b>MemberId</b></td>
 <td><b>Expected Return Date</b></td>
 </tr>
@@ -67,13 +77,14 @@ ResultSet resultSet = null;
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
-String sql ="select * from trans where str_to_date(expreturndate,'%d/%m/%Y') <= current_date() and tdeleted='n' and ReturnDate='0000-00-00 00:00:00'";
+String sql ="select * from transactions where str_to_date(expreturndate,'%Y-%m-%d')<=current_date() and tdeleted='n'";
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
-<tr bgcolor="#DEB887">
+<tr>
 <td><%=resultSet.getString("bookno") %></td>
+<td><%=resultSet.getString("bookname") %></td>
 <td><%=resultSet.getString("memid") %></td>
 <td><%=resultSet.getString("expreturndate") %></td>
 </tr>
@@ -86,6 +97,7 @@ e.printStackTrace();
 }
 %>
 </table>
+</div>
 </section>
 
 </body>

@@ -41,7 +41,7 @@ if(session.getAttribute("username")==null)
 </form>
 </div>
 <br>
-<h3 align="center"><strong>Issued Details Panel</strong></h3>
+<h3 align="center"><strong>RETURNED BOOK DETAILS PANEL</strong></h3>
 <form method="post" name="form" onsubmit="greeting()">
 <div class='container'>
 <table class='table table-bordered table-striped' border="1">
@@ -53,8 +53,6 @@ String db = "lib";
 String driver = "com.mysql.jdbc.Driver";
 String userName ="root";
 String password="password";
-
-
 Statement st;
 Statement st2;
 try{
@@ -63,7 +61,6 @@ con = DriverManager.getConnection(url+db,userName,password);
 String query = "select * from trans where tdeleted='y'";
 st = con.createStatement();
 ResultSet rs = st.executeQuery(query);
-
 %>
 <%
 while(rs.next()){

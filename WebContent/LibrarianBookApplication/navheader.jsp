@@ -42,7 +42,6 @@ body {
   border-radius: 20px;
   margin-left: 900px;
 }
-
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -56,7 +55,6 @@ body {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-
 /* Modal Content */
 .modal-content {
   position: relative;
@@ -71,18 +69,15 @@ body {
   animation-name: animatetop;
   animation-duration: 0.4s
 }
-
 /* Add Animation */
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0} 
   to {top:0; opacity:1}
 }
-
 @keyframes animatetop {
   from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
-
 /* The Close Button */
 .close {
   color: white;
@@ -90,22 +85,18 @@ body {
   font-size: 28px;
   font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
-
 .modal-header {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
 }
-
 .modal-body {padding: 2px 16px;}
-
 .modal-footer {
   padding: 2px 16px;
   background-color: #5cb85c;
@@ -119,18 +110,15 @@ body {
   border: none;
   cursor: pointer;
 }
-
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
   background-color: #2980B9;
 }
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
@@ -140,7 +128,6 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
 /* Links inside the dropdown */
 .dropdown-content a {
   color: black;
@@ -148,13 +135,10 @@ body {
   text-decoration: none;
   display: block;
 }
-
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd}
-
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
-
 .amt-head-stripe {
     background: #fff;
     height: 100px;
@@ -180,7 +164,7 @@ body {
     top: 75px;
     width: 100%;
     }
-   .perc-region {
+.perc-region {
     min-height: 0px !important;
 }
 </style>

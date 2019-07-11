@@ -36,7 +36,7 @@ if(session.getAttribute("libusername")==null)
 %>
 <jsp:include page="Search.jsp" /> 
 <div style=" float:left;width:280px">
-<form name="TrainerMenu" action="../export/exportReturnTrans.jsp" method="post" onsubmit="greeting()"> 
+<form name="TrainerMenu" action="../exportLib/exportReturnTrans.jsp" method="post" onsubmit="greeting()"> 
 <button id="myBtn" class="btn"  style="float:right" onclick="openPage('exportReturnTrans.jsp')">DOWNLOAD AS CSV</button>
 </form>
 </div>
@@ -53,8 +53,6 @@ String db = "lib";
 String driver = "com.mysql.jdbc.Driver";
 String userName ="root";
 String password="password";
-
-
 Statement st;
 Statement st2;
 try{
@@ -63,7 +61,6 @@ con = DriverManager.getConnection(url+db,userName,password);
 String query = "select * from trans where tdeleted='y'";
 st = con.createStatement();
 ResultSet rs = st.executeQuery(query);
-
 %>
 <%
 while(rs.next()){

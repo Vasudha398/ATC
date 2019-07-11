@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@page import="java.io.PrintWriter"%>
+    <%@page import="java.io.PrintWriter"%>
 <%@page import="java.sql.*,java.util.*"%>
+<%@ page import="java.sql.*" %>
+<%@ page import = "java.io.*,java.util.*, javax.servlet.*" %>
+<%@ page import = "java.util.Date" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Executive Dashboard</title>
+  <title>Admin Dashboard</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -18,12 +21,74 @@
   <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="../css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   
+
+
+<!-- <style type="text/css">body { background:  white !important; }
+.amt-head-stripe {
+    background: #fff;
+    height: 100px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.amt-logo-container {
+    text-align: center;
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	background: #fff;
+	width: 200px;
+	height: 90px;
+}
+.amt-main-nav {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 90px;
+    top: 75px;
+    width: 100%;
+    }
+   .perc-region {
+    min-height: 0px !important;
+}
+</style> -->
+ 
 </head>
 
 <body>
-<div class="jumbotron text-center" style="background-color: powderblue;height:150px;margin-bottom:0;">
-  <h2 ><strong><img src="ATClogo.PNG" width="100" height="70">&nbsp;&nbsp;AMERICAN TOWER CORPORATION</strong></h2>
+<div class="perc-region"> 
+<div class="rxbodyfield">
+<div class="amt-main-nav amt-nav">
+<div class="amt-logo-container"><a href="http://www.atctower.in/en/index.htm" title="Home">
+<img alt="atc-india-logo" class="amt-logo" height="81" src="../atc_india_logo.png" width="185" />
+</a>
 </div>
+</div>
+</div>
+<%
+String id = request.getParameter("userId");
+String driverName = "com.mysql.jdbc.Driver";
+String connectionUrl = "jdbc:mysql://localhost:3306/";
+String dbName = "lib";
+String userId = "root";
+String password = "password";
+String f=request.getParameter("from");
+String t=request.getParameter("to");
+
+try {
+Class.forName(driverName);
+} catch (ClassNotFoundException e) {
+e.printStackTrace();
+}
+
+Connection connection = null;
+Statement statement = null;
+ResultSet resultSet = null;
+%>
+
 <jsp:include page="../AdminDashboard/HeaderPage1.jsp"/> 
 
   <!-- Start your project here-->
@@ -80,31 +145,73 @@
   <span class="badge info-color-dark p-2">Custom date</span>
 </p>
 <div class="md-form">
-  <input placeholder="D-M-Y" type="text" id="from" class="form-control datepicker">
-  <label for="date-picker-example">From</label>
+  <input placeholder="FROM (D-M-Y)" input type="text" id="datepicker1">
 </div>
 <div class="md-form">
-  <input placeholder="D-M-Y" type="text" id="to" class="form-control datepicker">
-  <label for="date-picker-example">To</label>
+  <input placeholder="TO (D-M-Y)" input type="text" id="datepicker2">
 </div>
+<input type="submit" value="Transaction Records">
           </div>
           <!--Grid column-->
 
           <!--Grid column-->
           <div class="col-md-6 mb-4 text-center">
-          <!--Summary-->
-<p>BOOKS ISSUED:
-    <strong>2000</strong>
-    <button type="button" class="btn btn-info btn-sm p-2" data-toggle="tooltip" data-placement="top" title="Total books issued in the given period">
-        <i class="fas fa-question"></i>
-    </button>
-</p>
-<p>BOOKS BOUGHT:
-    <strong>100</strong>
-    <button type="button" class="btn btn-info btn-sm p-2" data-toggle="tooltip" data-placement="top" title="books bought in the given period">
-        <i class="fas fa-question"></i>
-    </button>
-</p>
+                <!--Grid row2-->
+      <div class="row-md-4">
+      
+      <section class="mb-5">
+       <p>Date: <input type="text" id="datepicker"></p>
+<%-- <div class="table-responsive">
+<table class="table table-striped w-auto table-bordered table-hover table-fixed" align="right">
+<tr>
+
+</tr>
+
+<tr bgcolor="">
+<td><b>TransId</b></td>
+<td><b>BookName</b></td>
+<td><b>MemberName</b></td>
+<td><b>Issue Date</b></td>
+<td><b>Return Date</b></td>
+</tr>
+
+<%
+try{ 
+connection = DriverManager.getConnection(connectionUrl+dbName+"?zeroDateTimeBehavior=convertToNull", userId, password);
+statement=connection.createStatement();
+
+
+String sql="select * from transactions where date_format('"+f+"', '%Y-%m-%d')<=date_format(transactiondate, '%Y-%m-%d') and date_format(transactiondate, '%Y-%m-%d')<=date_format('"+t+"', '%Y-%m-%d') order by transno asc";
+
+System.out.println(sql);
+
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+%>
+
+
+<tr>
+<td><%=resultSet.getInt("transno") %></td>
+<td><%=resultSet.getString("bookname") %></td>
+<td><%=resultSet.getString("mname") %></td>
+<td><%=resultSet.getDate("transactiondate") %></td>
+<td><%=resultSet.getDate("ReturnDate")%></td>
+</tr>
+
+
+
+
+<% 
+}
+
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+</table> --%>
+ </div>     
+      </div>
+ <!--Grid row2 ends-->
           </div>
           <!--Grid column-->
 <!--Change chart-->
@@ -164,74 +271,41 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="../js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        $( "#datepicker" ).datepicker();
+      } );
+      $(function () {
+          var $dp1 = $("#datepicker1"); 
+          $dp1.datepicker({
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: "yy-m-dd",
+            yearRange: "-100:+20",
+          });           
+                
+          var $dp2 = $("#datepicker2");  
+          $dp2.datepicker({
+            changeYear: true,
+            changeMonth: true,
+            yearRange: "-100:+20",
+            dateFormat: "yy-m-dd",
+          });                   
+        });
+    </script>
   <script>
-//Material Select Initialization
   $(document).ready(function () {
-  $('.mdb-select').material_select();
-  });
-//Tooltip Initialization
-  $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-  })
-//Minimalist chart
-  $(function () {
-      $('.min-chart#chart-sales').easyPieChart({
-          barColor: "#4caf50",
-          onStep: function (from, to, percent) {
-              $(this.el).find('.percent').text(Math.round(percent));
-          }
-      });
-  });
-//Main chart
-  var ctxL = document.getElementById("lineChart").getContext('2d');
-  var myLineChart = new Chart(ctxL, {
-  type: 'line',
-  data: {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [{
-  label: "NUMBER OF BOOKS ISSUED PER MONTH",
-  fillColor: "#fff",
-  backgroundColor: 'rgba(255, 255, 255, .3)',
-  borderColor: 'rgba(255, 255, 255)',
-  data: [0, 10, 5, 2, 20, 30, 45],
-  }]
-  },
-  options: {
-  legend: {
-  labels: {
-      fontColor: "#fff",
-  }
-  },
-  scales: {
-  xAxes: [{
-      gridLines: {
-          display: true,
-          color: "rgba(255,255,255,.25)"
-      },
-      ticks: {
-          fontColor: "#fff",
-      },
-  }],
-  yAxes: [{
-      display: true,
-      gridLines: {
-          display: true,
-          color: "rgba(255,255,255,.25)"
-      },
-      ticks: {
-          fontColor: "#fff",
-      },
-  }],
-  }
-  }
-  });
+	  $('.mdb-select').material_select();
+	  });
   </script>
 </body>
 

@@ -7,7 +7,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@ page import = "java.util.Date" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,10 +24,71 @@
   <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="../css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+   
+  <style type="text/css">
+.button {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+   }
+   
+   .my-custom-scrollbar {
+position: center;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+</style>
+ 
+<style type="text/css">body { background:  white !important; }
+.amt-head-stripe {
+    background: #fff;
+    height: 100px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.amt-logo-container {
+    text-align: center;
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	background: #fff;
+	width: 200px;
+	height: 90px;
+}
+.amt-main-nav {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 90px;
+    top: 75px;
+    width: 100%;
+    }
+   .perc-region {
+    min-height: 0px !important;
+}
+</style>
   
 </head>
 
 <body>
+<div class="perc-region"> 
+<div class="rxbodyfield">
+<div class="amt-main-nav amt-nav">
+<div class="amt-logo-container"><a href="http://www.atctower.in/en/index.htm" title="Home">
+<img alt="atc-india-logo" class="amt-logo" height="81" src="../atc_india_logo.png" width="185" />
+</a>
+</div>
+</div>
+</div>
 <%
 String id = request.getParameter("userId");
 String driverName = "com.mysql.jdbc.Driver";
@@ -36,6 +97,8 @@ String dbName = "lib";
 String userId = "root";
 String password = "password";
 String selDate=request.getParameter("dt");
+String dpf=request.getParameter("frum");
+String dpt=request.getParameter("toi"); 
 
 try {
 Class.forName(driverName);
@@ -47,20 +110,12 @@ Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
 %>
-<div class="jumbotron text-center" style="background-color: powderblue;height:150px;margin-bottom:0;">
-  <h2 ><strong><img src="../atclogo.png" width="100" height="70">&nbsp;&nbsp;AMERICAN TOWER CORPORATION</strong></h2>
-</div>
+
 <jsp:include page="HeaderPage1.jsp"/> 
 
   <!--Main layout-->
 <main>
   <div class="container-fluid">
-
-      <!--Section: Modals-->
-      <section>
-      </section>
-      <!--Section: Modals-->
-
      <!--Section: Main panel-->
 <section class="card card-cascade narrower mb-5">
 
@@ -84,14 +139,15 @@ ResultSet resultSet = null;
           <!--Grid column 1-->
           <div class="col-md-4 mb-1">
           <!--no of admins-->
-<p class="lead">
-  <span class="badge info-color-dark p-2">ADMINS </br></br>
+<form action="../AdminDashboard/AdminPage.jsp">
+ <div style="float: left; width:140px;">
+&nbsp;&nbsp;<button id="myBtn" class="button" style="float:left">ADMIN
      <!-- SQL -->
   
 
 <%
 try{ 
-connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+connection = DriverManager.getConnection(connectionUrl+dbName+"?zeroDateTimeBehavior=convertToNull", userId, password);
 statement=connection.createStatement();
 String sql ="SELECT COUNT(*) FROM admin";
 
@@ -110,7 +166,9 @@ e.printStackTrace();
 }
 %>
   
-  </span></p>
+  </button>
+  </div>
+  </form>
   
   <!-- SQL -->
   
@@ -121,8 +179,10 @@ e.printStackTrace();
           <!-- Grid column 2 -->          
           <div class="col-md-4 mb-4">
           <!--no of librarians-->
-<p class="lead">
-  <span class="badge info-color-dark p-2">LIBRARIANS</br></br>
+
+  <form action="../AdminLibApplication/LibApplication.jsp">
+ <div style="float: center; width:140px;">
+&nbsp;&nbsp;<button id="myBtn" class="button" style="float:center">LIBRARIAN
   <%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
@@ -143,8 +203,9 @@ catch (Exception e) {
 e.printStackTrace();
 }
 %>
-</span>
-</p>
+</button>
+</div>
+	</form>  
 
 </div>
           
@@ -152,8 +213,9 @@ e.printStackTrace();
           <!-- Grid column 3 -->          
           <div class="col-md-4 mb-4">
           <!--no of members-->
-<p class="lead">
-  <span class="badge info-color-dark p-2">MEMBERS</br></br>
+<form action="../AdminMemApplication/MemApplication.jsp">
+ <div style="float: right; width:140px;">
+&nbsp;&nbsp;<button id="myBtn" class="button" style="float:right">MEMBERS
   <%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
@@ -173,14 +235,15 @@ while(resultSet.next()){
 catch (Exception e) {
 e.printStackTrace();
 }
-%></span>
-</p>
+%>
+</button>
 </div>
+</form>
           </div>
           <!--Grid column 3 -->
       </div>
       <!--Grid row-->
-
+</div>
   </div>
   <!--Panel content row 2 book management-->
   
@@ -200,8 +263,9 @@ e.printStackTrace();
           <!--Grid column 1-->
           <div class="col-md-4 mb-4">
           <!--no of admins-->
-<p class="lead">
-  <span class="badge info-color-dark p-2">TOTAL BOOKS</br></br> <%
+<form action="../AdminBookApplication/BookApplication.jsp">
+ <div style="float:left; width:140px;">
+&nbsp;&nbsp;<button id="myBtn" class="button" style="float:left">TOTAL BOOKS <%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
@@ -220,20 +284,23 @@ while(resultSet.next()){
 catch (Exception e) {
 e.printStackTrace();
 }
-%></span>
-</p>
+%>
+</button>
+</div>
+</form>
 
 </div>
         <!--Grid column 1-->
           <!-- Grid column 2 -->          
           <div class="col-md-4 mb-4">
           <!--no of librarians-->
-<p class="lead">
-  <span class="badge info-color-dark p-2">ISSUED BOOKS</br></br><%
+ <form action="../AdminTransApplication/TransApplication.jsp">
+ <div style="float: center; width:140px;">
+&nbsp;&nbsp;<button id="myBtn" class="button" style="float:center">ISSUED BOOKS<%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
-String sql ="SELECT sum(issued) FROM books where bdeleted='n'";
+String sql ="SELECT COUNT(*) FROM trans where tdeleted='n'";
 
 resultSet = statement.executeQuery(sql);
 String countrow="";
@@ -248,8 +315,10 @@ while(resultSet.next()){
 catch (Exception e) {
 e.printStackTrace();
 }
-%></span>
-</p>
+%>
+</button>
+</div>
+</form>
 
 </div>
           
@@ -257,8 +326,9 @@ e.printStackTrace();
           <!-- Grid column 3 -->          
           <div class="col-md-4 mb-4">
           <!--no of members-->
-<p class="lead">
-  <span class="badge info-color-dark p-2">BOOKS OVERDUE</br></br><%
+<form action="../AdminMemApplication/MemApplication.jsp">
+ <%-- <div style="float: right; width:140px;">
+&nbsp;&nbsp;<button id="myBtn" class="button" style="float:right">BOOKS OVERDUE<%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
@@ -277,8 +347,10 @@ while(resultSet.next()){
 catch (Exception e) {
 e.printStackTrace();
 }
-%></span>
-</p>
+%>
+</button>
+</div> --%>
+</form>
 
 </div>
           </div>
@@ -305,7 +377,19 @@ e.printStackTrace();
           <!--Grid column 1-->
           <div class="col-md-4 mb-4">
                    <!--Date select-->
-                  <p> <form method="post">
+                   <form method="post">
+<p class="lead my-4">
+  <span class="badge info-color-dark p-2">Custom date</span>
+</p>
+<div class="md-form">
+  <input placeholder="FROM (D-M-Y)"  type="text" name="frum" id="datepicker1">
+</div>
+<div class="md-form">
+  <input placeholder="TO (D-M-Y)" type="text" name="toi" id="datepicker2">
+</div>
+<input type="submit" value="Transaction Records">
+</form>
+                 <!--  <p> <form method="post">
                    
       <select name="dt" class="mdb-select colorful-select dropdown-info">
   <option value="" disabled>Choose time period</option>
@@ -316,7 +400,7 @@ e.printStackTrace();
 </select>
 <input type="submit" value="Transaction Records">
 
-</form></p>
+</form></p> -->
 </div>
         <!--Grid column 1-->
           <!-- Grid column 2 -->          
@@ -333,38 +417,43 @@ e.printStackTrace();
       <div class="row-md-4">
       
       <section class="mb-5">
-<style> .equal-width td {   width: 50%; } </style>
-
-<table class="equal-width" align="center" cellpadding="5" cellspacing="4" border="1">
+<div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
+<table id="dtDynamicVerticalScrollExample" width="100%" class="table table-striped w-auto table-bordered table-hover table-fixed" align="right">
 <tr>
 
 </tr>
-<tr  bgcolor="white">
+
+<tr bgcolor="">
 <td><b>TransId</b></td>
-<td><b>BookNo</b></td>
-<td><b>MemberId</b></td>
-<td><b>Transaction Date</b></td>
+<td><b>BookName</b></td>
+<td><b>MemberName</b></td>
+<td><b>Issue Date</b></td>
 <td><b>Return Date</b></td>
 </tr>
+
 <%
 try{ 
-connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
+connection = DriverManager.getConnection(connectionUrl+dbName+"?zeroDateTimeBehavior=convertToNull", userId, password);
 statement=connection.createStatement();
 
 
-String sql="select * from trans where date_sub(current_date(),interval '"+selDate+"' day)<=transactiondate and transactiondate <= current_date() and tdeleted='n'";
+/* String sql="select * from transactions where date_sub(current_date(),interval '"+selDate+"' day)<=date_format(transactiondate, '%Y-%m-%d') and date_format(transactiondate, '%Y-%m-%d')<=current_date() order by transno asc"; */
+/* String sql="select * from transactions where date_format(transactiondate, '%Y-%m-%d') between '"+dpf+"' and '"+dpt+"' order by transno asc"; */
+String sql="select * from transactions where transactiondate>='"+dpf+"' and transactiondate<='"+dpt+"' order by transno asc";
+
+System.out.println(sql);
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
 
 
-<tr bgcolor="#DEB887">
+<tr>
 <td><%=resultSet.getInt("transno") %></td>
-<td><%=resultSet.getString("bookno") %></td>
-<td><%=resultSet.getString("memid") %></td>
+<td><%=resultSet.getString("bookname") %></td>
+<td><%=resultSet.getString("mname") %></td>
 <td><%=resultSet.getDate("transactiondate") %></td>
-<td><%=resultSet.getString("ReturnDate") %></td>
+<td><%=resultSet.getDate("ReturnDate")%></td>
 </tr>
 
 
@@ -378,7 +467,7 @@ e.printStackTrace();
 }
 %>
 </table>
-      
+ </div>     
       </div>
  <!--Grid row2 ends-->
       
@@ -424,7 +513,11 @@ e.printStackTrace();
   
     <!--/Card image-->
 <!--row 3 over-->
+<div class="row-md-7">
+<!--Date pickers-->
 
+          </div>
+</div>
 
 </div>
 <!--Grid column 2 of main panel over-->
@@ -466,6 +559,30 @@ e.printStackTrace();
   <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="../js/mdb.min.js"></script>
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        $( "#datepicker" ).datepicker();
+      } );
+      $(function () {
+          var $dp1 = $("#datepicker1"); 
+          $dp1.datepicker({
+            changeYear: true,
+            changeMonth: true,
+            dateFormat: "yy-m-dd",
+            yearRange: "-100:+20",
+          });           
+                
+          var $dp2 = $("#datepicker2");  
+          $dp2.datepicker({
+            changeYear: true,
+            changeMonth: true,
+            yearRange: "-100:+20",
+            dateFormat: "yy-m-dd",
+          });                   
+        });
+    </script>
   <script>
   $(document).ready(function () {
 	  $('.mdb-select').material_select();

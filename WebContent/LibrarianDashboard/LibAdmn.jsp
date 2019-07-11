@@ -48,7 +48,7 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 <div class="jumbotron text-center" style="background-color: powderblue;height:150px;margin-bottom:0;">
-  <h2 ><strong><img src="../atclogo.png" width="100" height="70">&nbsp;&nbsp;AMERICAN TOWER CORPORATION</strong></h2>
+  <h2 ><strong><img src="../atc_india_logo.png" width="100" height="70">&nbsp;&nbsp;AMERICAN TOWER CORPORATION</strong></h2>
 </div>
 <jsp:include page="HeaderPage2.jsp"/> 
 
@@ -352,7 +352,7 @@ connection = DriverManager.getConnection(connectionUrl+dbName, userId, password)
 statement=connection.createStatement();
 
 
-String sql="select * from trans where date_sub(current_date(),interval '"+selDate+"' day)<=transactiondate and transactiondate <= current_date() and tdeleted='n'";
+String sql="select * from trans where date_sub(current_date(),interval '"+selDate+"' day)<=date_format(transactiondate, '%Y-%m-%d') and date_format(transactiondate, '%Y-%m-%d')<=current_date()";
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){

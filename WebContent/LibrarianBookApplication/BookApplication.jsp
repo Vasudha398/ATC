@@ -26,7 +26,6 @@
   cursor: pointer;
   font-size: 20px;
 }
-
 .button3 {background-color: #f44336;} /* Red */ 
 .button4 {background-color: #800080;} /* Gray */ 
 .button5 {background-color: #8000ff;} /* Black */
@@ -70,7 +69,7 @@ if(session.getAttribute("libusername")==null)
 &nbsp;&nbsp;<button id="myBtn" class="btn" style="float:right">ADD BOOKS</button>
 </div>
 <div style="float: right; width: 160px">
-<form name="TrainerMenu" action="/HelloJSP/export/exportBook.jsp" method="post" onsubmit="greeting()">
+<form name="TrainerMenu" action="/HelloJSP/exportLib/exportBook.jsp" method="post" onsubmit="greeting()">
 <button id="myBtn" class="btn"  style="float:right" onclick="openPage('exportBook.jsp')">&nbsp;&nbsp;DOWNLOAD AS CSV</button>
 </form>
 </div>
@@ -191,7 +190,6 @@ String db = "lib";
 String driver = "com.mysql.jdbc.Driver";
 String userName ="root";
 String password="password";
-
 Statement st;
 try{
 Class.forName(driver);

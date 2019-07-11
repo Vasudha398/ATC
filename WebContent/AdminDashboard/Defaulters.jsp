@@ -11,17 +11,26 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>BooksDue</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <style type="text/css">
+  
+   .my-custom-scrollbar {
+position: center;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+  </style>
 
 <title>Insert title here</title>
 </head>
@@ -47,37 +56,32 @@ Statement statement = null;
 ResultSet resultSet = null;
 %>
 <section class="mb-5">
-<style> .equal-width td {   width: 21%; } </style>
-
-<table class="equal-width" align="center" cellpadding="7" cellspacing="5" border="1">
+<div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
+<table id="dtDynamicVerticalScrollExample" width="100%" class="table table-striped w-auto table-bordered table-hover table-fixed" align="center">
 <tr>
 
 </tr>
 <tr  bgcolor="white">
+<td><b>TransactionId</b></td>
 <td><b>MemberId</b></td>
 <td><b>MemberName</b></td>
 <td><b>Contact</b></td>
-<td><b>Email</b></td>
-<td><b>Pending Books</b></td>
 </tr>
 <%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
-String sql ="SELECT * FROM mem where mdeleted='n' and mPending>0";
+String sql ="select * from defaulter where str_to_date(expreturndate,'%Y-%m-%d')<=current_date()";
 
 resultSet = statement.executeQuery(sql);
 while(resultSet.next()){
 %>
-<tr bgcolor="#DEB887">
+<tr>
 
+<td><%=resultSet.getInt("transno") %></td>
 <td><%=resultSet.getString("memid") %></td>
 <td><%=resultSet.getString("mname") %></td>
 <td><%=resultSet.getString("mcontact") %></td>
-<td><%=resultSet.getString("memail") %></td>
-<td><%=resultSet.getInt("mPending") %></td>
-
-
 </tr>
 
 <% 
@@ -88,6 +92,7 @@ e.printStackTrace();
 }
 %>
 </table>
+</div>
 </section>
 
 </body>
