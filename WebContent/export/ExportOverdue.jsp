@@ -3,7 +3,7 @@
 <body>
 <table>
 <%
-String filename = "c:\\csv\\export_Librarian_data.csv";
+String filename = "c:\\csv\\export_Overdue.csv";
 Connection conn = null;
 String url = "jdbc:mysql://localhost:3306/";
 String dbName = "lib";
@@ -14,46 +14,42 @@ Statement stmt;
 try
 {
 FileWriter fw = new FileWriter(filename);
-fw.append("Librarian Id");
+fw.append("Transaction Id");
 fw.append(',');
-fw.append("Librarian's Name");
+fw.append("Book No");
 fw.append(',');
-fw.append("Librarian's Address");
+fw.append("Book Name");
 fw.append(',');
-fw.append("Librarian's Contact No");
+fw.append("Member Name");
 fw.append(',');
-fw.append("Librarian's Email Id");
+fw.append("Expected Return Date");
 fw.append(',');
-fw.append("Librarian's City");
-fw.append(',');
-fw.append("Librarian's DOJ");
+fw.append("Days Passed");
 fw.append('\n');
 Class.forName(driver);
 conn = DriverManager.getConnection(url+dbName,userName,password);
-String query = "select * from librarian";
+String query = "select * from transactions where str_to_date(expreturndate,'%Y-%m-%d')<=current_date() and tdeleted='n'";
 stmt = conn.createStatement();
 ResultSet rs = stmt.executeQuery(query);
 while(rs.next())
 {
-fw.append(rs.getString(2));
-fw.append(',');
-fw.append(rs.getString(3));
+fw.append(rs.getString(1));
 fw.append(',');
 fw.append(rs.getString(7));
 fw.append(',');
+fw.append(rs.getString(11));
+fw.append(',');
 fw.append(rs.getString(9));
 fw.append(',');
-fw.append(rs.getString(6));
+fw.append(rs.getString(5));
 fw.append(',');
-fw.append(rs.getString(8));
-fw.append(',');
-fw.append(rs.getString(10));
+fw.append(rs.getString(2));
 fw.append('\n');
 }
 fw.flush();
 fw.close();
 conn.close();
-response.sendRedirect("../AdminLibApplication/LibApplication.jsp");
+response.sendRedirect("../AdminDashboard/DashAdm.jsp");
 } catch (Exception e) {
 e.printStackTrace();
 }

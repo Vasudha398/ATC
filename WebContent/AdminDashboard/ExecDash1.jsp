@@ -283,7 +283,7 @@ e.printStackTrace();
     <script>
     $( function() {
         $( "#datepicker" ).datepicker();
-      } );
+      });
       $(function () {
           var $dp1 = $("#datepicker1"); 
           $dp1.datepicker({

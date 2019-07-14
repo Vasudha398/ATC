@@ -50,4 +50,12 @@
  </ul>
  </div>
 </body>
-</html>
+</html></form>
+
+
+
+
+<jsp:forward page="HelloJSP/WebContent/export/ExportDaily.jsp"> 
+<jsp:param name="dpf1" value="<%=request.getParameter(\"datepicker1\") %>" /> 
+<jsp:param name="dpf2" value="<%=request.getParameter(\"datepicker2\") %>" /> 
+</jsp:forward> 

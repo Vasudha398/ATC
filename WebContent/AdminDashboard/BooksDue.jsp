@@ -42,10 +42,15 @@ display: block;
          new SimpleDateFormat ("dd/MM/yyyy");
          out.print( "<h2 align=\"center\">" + ft.format(dNow) + "</h2>"); 
       %>
-
+<div style=" float:left;width:280px">
+<form name="TrainerMenu" action="/HelloJSP/export/ExportOverdue.jsp" method="post" onsubmit="greeting()"> 
+<button id="myBtn" class="btn"  style="float:left" onclick="openPage('ExportOverdue.jsp')">DOWNLOAD REPORT</button>
+</form>
+</div>
+<br>
 <%
 String id = request.getParameter("userId");
-String driverName = "com.mysql.jdbc.Driver";
+String driverName = "com.mysql.jdbc.Driver"; 
 String connectionUrl = "jdbc:mysql://localhost:3306/";
 String dbName = "lib";
 String userId = "root";
@@ -61,17 +66,19 @@ Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
 %>
-<section class="mb-5">
+
 <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
-<table id="dtDynamicVerticalScrollExample" width="100%" class="table table-striped w-auto table-bordered table-hover table-fixed" align="center">
+<table id="dtDynamicVerticalScrollExample" width="100%" class="table table-striped table-bordered table-hover table-condensed" align="center">
 <tr>
 
 </tr>
+<br>
 <tr  bgcolor="white">
 <td><b>BookNo</b></td>
 <td><b>BookName</b></td>
-<td><b>MemberId</b></td>
+<td><b>MemberName</b></td>
 <td><b>Expected Return Date</b></td>
+<td><b>Days passed</b></td>
 </tr>
 <%
 try{ 
@@ -85,8 +92,9 @@ while(resultSet.next()){
 <tr>
 <td><%=resultSet.getString("bookno") %></td>
 <td><%=resultSet.getString("bookname") %></td>
-<td><%=resultSet.getString("memid") %></td>
+<td><%=resultSet.getString("mname") %></td>
 <td><%=resultSet.getString("expreturndate") %></td>
+<td><%=resultSet.getString("diff") %></td>
 </tr>
 
 <% 
@@ -98,7 +106,7 @@ e.printStackTrace();
 %>
 </table>
 </div>
-</section>
+
 
 </body>
 </html>

@@ -8,8 +8,8 @@ Connection conn = null;
 String url = "jdbc:mysql://localhost:3306/";
 String dbName = "lib";
 String driver = "com.mysql.jdbc.Driver";
-String userName = "rahul";
-String password = "pass";
+String userName = "root";
+String password = "password";
 Statement stmt;
 try
 {

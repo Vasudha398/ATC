@@ -55,9 +55,8 @@ Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
 %>
-<section class="mb-5">
 <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
-<table id="dtDynamicVerticalScrollExample" width="100%" class="table table-striped w-auto table-bordered table-hover table-fixed" align="center">
+<table id="dtDynamicVerticalScrollExample" width="100%" class="table table-striped table-bordered table-hover table-condensed" align="center">
 <tr>
 
 </tr>
@@ -93,7 +92,7 @@ e.printStackTrace();
 %>
 </table>
 </div>
-</section>
+
 
 </body>
 </html>
