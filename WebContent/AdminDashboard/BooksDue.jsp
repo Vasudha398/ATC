@@ -64,7 +64,9 @@ e.printStackTrace();
 
 Connection connection = null;
 Statement statement = null;
+Statement stmt = null;
 ResultSet resultSet = null;
+ResultSet rs = null;
 %>
 
 <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
@@ -84,9 +86,13 @@ ResultSet resultSet = null;
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
-String sql ="select * from transactions where str_to_date(expreturndate,'%Y-%m-%d')<=current_date() and tdeleted='n'";
+//stmt=connection.createStatement();
+/* String sql2="select transno, DATEDIFF(current_date(),STR_TO_DATE(expreturndate, '%Y-%m-%d')) as days from transactions"; */
+String sql ="select *, DATEDIFF(current_date(),STR_TO_DATE(expreturndate, '%Y-%m-%d')) as days from transactions where str_to_date(expreturndate,'%Y-%m-%d')<=current_date() and tdeleted='n'";
 
 resultSet = statement.executeQuery(sql);
+
+/* rs=statement.executeQuery(sql2); */
 while(resultSet.next()){
 %>
 <tr>
@@ -94,7 +100,9 @@ while(resultSet.next()){
 <td><%=resultSet.getString("bookname") %></td>
 <td><%=resultSet.getString("mname") %></td>
 <td><%=resultSet.getString("expreturndate") %></td>
-<td><%=resultSet.getString("diff") %></td>
+<%-- <td><%=resultSet.getString("diff") %></td> --%>
+<td><%=resultSet.getString("days") %></td>
+
 </tr>
 
 <% 
