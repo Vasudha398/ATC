@@ -129,7 +129,7 @@ ResultSet resultSet = null;
 
 							<div
 								class="view view-cascade py-3 gradient-card-header info-color-dark">
-								<h5 class="mb-0 mr-5">&nbsp;&nbsp;MANAGEMENT OVERVIEW</h5>
+								<h5 class="mb-0 mr-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MANAGEMENT OVERVIEW</h5>
 							</div>
 							<!--/Panel Header-->
 							<!--Panel content-->
@@ -254,7 +254,7 @@ e.printStackTrace();
 							&nbsp;&nbsp;&nbsp;
 							<div
 								class="view view-cascade py-3 gradient-card-header info-color-dark">
-								<h5 class="mb-0">&nbsp;&nbsp;BOOK MANAGEMENT</h5>
+								<h5 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOOK MANAGEMENT</h5>
 							</div>
 							<!--/Panel Header-->
 							<!--Panel content-->
@@ -368,7 +368,7 @@ e.printStackTrace();
 							&nbsp;&nbsp;&nbsp;
 							<div
 								class="view view-cascade py-3 gradient-card-header info-color-dark">
-								<h5 class=" mb-0 ">&nbsp;&nbsp;DAILY TRACKING TRANSACTION
+								<h5 class=" mb-0 ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DAILY TRACKING TRANSACTION
 									RECORDS</h5>
 							</div>
 							<!--/Panel Header-->
@@ -522,7 +522,7 @@ e.printStackTrace();
 							<div
 								class="view view-cascade py-3 gradient-card-header info-color-dark mb-4">
 								<h5 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									ONGOING DUES</h5>
+									BOOKS DUE</h5>
 							</div>
 							<jsp:include page="BooksDue.jsp" />
 							<br>
@@ -540,25 +540,28 @@ e.printStackTrace();
 							</div>
 							<p>
  <form method="post">           
-  <select name="dt" class="mdb-select colorful-select dropdown-info">
-	  <option value="" disabled>Choose the Report you want to see</option>
-	  <option value="0">Books available VS issued by Genre</option>
-	  <option value="1">No of Books Issued past 12 weeks</option>
-	  <option value="2">Books by popularity past 12 months</option>
+  <select name="dt" id="cur" class="mdb-select colorful-select dropdown-info">
+	  <option value="0">Choose the Report you want to see</option>
+	  <option value="1">Books available VS issued by Genre</option>
+	  <option value="2">No of Books Issued past 12 months</option>
+	  <option value="3">Books by popularity past 12 months</option>
   </select>
 <input type="submit" value="Transaction Records">
 </form>
 </p> 
-	
 <c:if test = "${param.dt == 0}">
+   <c:out value="No Report Selected"/> 
+   
+ </c:if>	
+<c:if test = "${param.dt == 1}">
   <%--  <c:out value="this is report 0"/> --%>
    <jsp:include page="../Charts/charttrial.html" />
     <%-- <jsp:include page="charttrial2.html" /> --%>
  </c:if>
- <c:if test = "${param.dt == 1}">
+ <c:if test = "${param.dt == 2}">
    <jsp:include page="../Charts/ColChart.html" />
 </c:if>
-<c:if test = "${param.dt == 2}">
+<c:if test = "${param.dt == 3}">
    <jsp:include page="../Charts/ColChart2.html" />
 </c:if>
 							
@@ -615,7 +618,7 @@ e.printStackTrace();
             dateFormat: "yy-m-dd",
           });                   
         });
-      
+     
      /*  function next(){
           //Location where you want to forward your values
           window.location.href = "http://localhost:8563/And/try1.jsp?dymanicValue=" + dpf; 

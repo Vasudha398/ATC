@@ -36,14 +36,6 @@ display: block;
 function greeting(){
     alert("Kindly create a CSV folder in your C directory. Your file will be downloaded in csv folder.");
 }
-/* $("#myHref").on('click', function("mname") {
-/*     document.getElementById("myHref"); */
-    /* var f=document.form;
-    f.method="post";
-    f.action='Defaulter.jsp?mname='+mname;
-    f.submit();
-
-}); */ 
 </script>
 <title>Insert title here</title>
 </head>
@@ -56,7 +48,7 @@ function greeting(){
       %>
 <div style=" float:left;width:280px">
 <form name="TrainerMenu" action="/HelloJSP/export/ExportOverdue.jsp" method="post" onsubmit="greeting()"> 
-<button id="myBtn" class="btn"  style="float:left" onclick="openPage('../export/ExportOverdue.jsp')">DOWNLOAD REPORT</button>
+<button id="myBtn" class="btn"  style="float:left" onclick="openPage('ExportOverdue.jsp')">DOWNLOAD REPORT</button>
 </form>
 </div>
 <br>
@@ -110,8 +102,9 @@ while(resultSet.next()){
 <tr>
 <td><%=resultSet.getString("bookno") %></td>
 <td><%=resultSet.getString("bookname") %></td>
-<td><a href="../AdminDashboard/Defaulters.jsp" id="myHref"><%=resultSet.getString("mname") %></a></td>
+<td><%=resultSet.getString("mname") %></td>
 <td><%=resultSet.getString("expreturndate") %></td>
+<%-- <td><%=resultSet.getString("diff") %></td> --%>
 <td><%=resultSet.getString("days") %></td>
 
 </tr>
@@ -128,5 +121,4 @@ e.printStackTrace();
 
 
 </body>
-
 </html>

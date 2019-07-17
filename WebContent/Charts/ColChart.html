@@ -25,48 +25,34 @@
 
             function drawAnnotations() {
                   var data = new google.visualization.DataTable();
-                  data.addColumn('string', 'transactiondate');
+                  data.addColumn('number', 'month');
                   data.addColumn('number', 'Books issued');
-                  data.addColumn({type: 'string', role: 'annotation'});
                   data.addColumn({type: 'string', role: 'annotation'});
                   for(var i=0;i<queryObjectLen;i++)
 	                {
-	                   /*  var week_of_month = queryObject.bookpw[i].week_of_month; */
-	                     var transactiondate = queryObject.bookpw[i].transactiondate;
+	                   var month = queryObject.bookpw[i].month;
 	                    var quantity = queryObject.bookpw[i].quantity;
-	                    var week_of_month = queryObject.bookpw[i].week_of_month;
 	                    var MName = queryObject.bookpw[i].MName;
 	                    
 	                    data.addRows([
-	                        [transactiondate,parseInt(quantity),parseInt(week_of_month)+" wk",MName]
+	                        [parseInt(month),parseInt(quantity),MName]
 	                    ]);
 	                }
 
-                /*   data.addRows([
-                    [1,  .5],
-                    [2,      .8],
-                    [3,   1],
-                    [4,   2.25 ],
-                    [5,  2.25],
-                    [6,     3],
-                    [7,   6.25],
-                    [8,       5],
-                    [9,   3.5],
-                    [10,  4],
-                  ]);
- */
+             
+ 
                   var options = {
-                    title: 'No. of books issued per week for last 12 weeks',
+                    title: 'No. of books issued per month for last 12 months',
                     annotations: {
                       alwaysOutside: true,
                       textStyle: {
-                        fontSize: 14,
+                        fontSize: 10,
                         color: '#000',
                         auraColor: 'none'
                       }
                     },
                     hAxis: {
-                      title: 'Week of the month',
+                      title: 'Month',
                       //format: 'h:mm a',
                       viewWindow: {
                         min: [7, 30, 0],

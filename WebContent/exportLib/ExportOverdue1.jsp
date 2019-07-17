@@ -3,7 +3,7 @@
 <body>
 <table>
 <%
-String filename = "c:\\csv\\export_Overdue.csv";
+String filename = "c:\\csv\\Libexport_Overdue.csv";
 Connection conn = null;
 String url = "jdbc:mysql://localhost:3306/";
 String dbName = "lib";
@@ -27,7 +27,7 @@ fw.append(',');
 fw.append("Days Passed");
 fw.append('\n');
 Class.forName(driver);
-conn = DriverManager.getConnection(url+dbName,userName,password);
+conn = DriverManager.getConnection(url+dbName+"?zeroDateTimeBehavior=convertToNull",userName,password);
 String query = "select *, DATEDIFF(current_date(),STR_TO_DATE(expreturndate, '%Y-%m-%d')) as days from transactions where str_to_date(expreturndate,'%Y-%m-%d')<=current_date() and tdeleted='n'";
 stmt = conn.createStatement();
 ResultSet rs = stmt.executeQuery(query);
@@ -35,13 +35,13 @@ while(rs.next())
 {
 fw.append(rs.getString(1));
 fw.append(',');
-fw.append(rs.getString(7));
+fw.append(rs.getString(6));
 fw.append(',');
-fw.append(rs.getString(11));
+fw.append(rs.getString(10));
 fw.append(',');
-fw.append(rs.getString(9));
+fw.append(rs.getString(8));
 fw.append(',');
-fw.append(rs.getString(5));
+fw.append(rs.getString(4));
 fw.append(',');
 fw.append(rs.getString("days"));
 fw.append('\n');

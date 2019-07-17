@@ -214,6 +214,7 @@ if(session.getAttribute("username")==null)
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
                 <li><a href="../Logout"><b>LOGOUT</b></a></li>
+                <li><a href="../AdminDashboard/DashAdm.jsp"><b>DASHBOARD</b></a></li>
        </ul>
        <div>
        

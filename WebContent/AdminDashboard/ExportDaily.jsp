@@ -115,7 +115,7 @@ display: block;
 		<h6><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In order to download this report, kindly create a <b><i>csv</i></b> folder in your C directory</h6>
 <table>		
 <%
-String filename = "c:\\csv\\daily_transaction.csv";
+String filename = "c:\\csv\\Admin_daily_transaction.csv";
 String id = request.getParameter("userId");
 String driver = "com.mysql.jdbc.Driver";
 String url = "jdbc:mysql://localhost:3306/";
@@ -149,13 +149,13 @@ while(rs.next())
 {
 fw.append(rs.getString(1));
 fw.append(',');
-fw.append(rs.getString(11));
+fw.append(rs.getString(10));
 fw.append(',');
-fw.append(rs.getString(9));
+fw.append(rs.getString(8));
 fw.append(',');
-fw.append(rs.getString(3));
+fw.append(rs.getString(2));
 fw.append(',');
-fw.append(rs.getString(6));
+fw.append(rs.getString(5));
 fw.append('\n');
 }
 fw.flush();

@@ -10,16 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>BooksDue</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="../css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="../css/style.css" rel="stylesheet">
+ 
   <style type="text/css">
   
    .my-custom-scrollbar {
@@ -35,7 +26,7 @@ display: block;
 <title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="../AdminLibApplication/navheader.jsp" />
 
 <%
 String id = request.getParameter("userId");
