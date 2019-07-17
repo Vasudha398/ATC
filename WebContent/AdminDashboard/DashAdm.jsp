@@ -547,6 +547,7 @@ e.printStackTrace();
 	  <option value="3">Books by popularity past 12 months</option>
   </select>
 <input type="submit" value="Transaction Records">
+
 </form>
 </p> 
 <c:if test = "${param.dt == 0}">

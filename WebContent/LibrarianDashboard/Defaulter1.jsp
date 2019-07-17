@@ -16,7 +16,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="../AdminLibApplication/navheader.jsp" />
+<jsp:include page="../LibrarianMemApplication/navheader.jsp" />
 
 <%
 String id = request.getParameter("userId");

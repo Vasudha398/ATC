@@ -34,8 +34,17 @@ display: block;
 </style>
 <script>
 function greeting(){
-	alert("Kindly create a CSV folder in your C directory. Your file will be downloaded in csv folder.");
+    alert("Kindly create a CSV folder in your C directory. Your file will be downloaded in csv folder.");
 }
+ /* $("#myHref").on('click', function(mname) {
+  /*    document.getElementById("myHref");  */
+  /*   var f=document.form;
+    f.method="post";
+    f.action='Defaulter.jsp?mname='+mname;
+    System.out.prinln("hello",+mname);
+    f.submit();
+
+});  */ */
 </script>
 <title>Insert title here</title>
 </head>
@@ -45,10 +54,10 @@ function greeting(){
          SimpleDateFormat ft = 
          new SimpleDateFormat ("dd/MM/yyyy");
          out.print( "<h2 align=\"center\">" + ft.format(dNow) + "</h2>"); 
-      %>
+%>
 <div style=" float:left;width:280px">
 <form name="TrainerMenu" action="/HelloJSP/exportLib/ExportOverdue1.jsp" method="post" onsubmit="greeting()"> 
-<button id="myBtn" class="btn"  style="float:left" onclick="openPage('ExportOverdue1.jsp')">DOWNLOAD REPORT</button>
+<button id="myBtn" class="btn"  style="float:left" onclick="openPage('../exportLib/ExportOverdue1.jsp')">DOWNLOAD REPORT</button>
 </form>
 </div>
 <br>
@@ -59,7 +68,9 @@ String connectionUrl = "jdbc:mysql://localhost:3306/";
 String dbName = "lib";
 String userId = "root";
 String password = "password";
-
+/* String mname=request.getParameter("mname");
+System.out.println("HHHHH"+mname);
+ */
 try {
 Class.forName(driverName);
 } catch (ClassNotFoundException e) {
@@ -102,9 +113,8 @@ while(resultSet.next()){
 <tr>
 <td><%=resultSet.getString("bookno") %></td>
 <td><%=resultSet.getString("bookname") %></td>
-<td><%=resultSet.getString("mname") %></td>
+<td><a href="../LibrarianDashboard/Defaulter1.jsp?mname=<%=resultSet.getString("mname")%>"" ><%=resultSet.getString("mname") %></a></td>
 <td><%=resultSet.getString("expreturndate") %></td>
-<%-- <td><%=resultSet.getString("diff") %></td> --%>
 <td><%=resultSet.getString("days") %></td>
 
 </tr>
@@ -121,4 +131,5 @@ e.printStackTrace();
 
 
 </body>
+
 </html>

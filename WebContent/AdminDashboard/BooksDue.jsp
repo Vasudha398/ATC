@@ -36,14 +36,15 @@ display: block;
 function greeting(){
     alert("Kindly create a CSV folder in your C directory. Your file will be downloaded in csv folder.");
 }
-/* $("#myHref").on('click', function("mname") {
-/*     document.getElementById("myHref"); */
-    /* var f=document.form;
+ /* $("#myHref").on('click', function(mname) {
+  /*    document.getElementById("myHref");  */
+  /*   var f=document.form;
     f.method="post";
     f.action='Defaulter.jsp?mname='+mname;
+    System.out.prinln("hello",+mname);
     f.submit();
 
-}); */ 
+});  */ */
 </script>
 <title>Insert title here</title>
 </head>
@@ -53,7 +54,7 @@ function greeting(){
          SimpleDateFormat ft = 
          new SimpleDateFormat ("dd/MM/yyyy");
          out.print( "<h2 align=\"center\">" + ft.format(dNow) + "</h2>"); 
-      %>
+%>
 <div style=" float:left;width:280px">
 <form name="TrainerMenu" action="/HelloJSP/export/ExportOverdue.jsp" method="post" onsubmit="greeting()"> 
 <button id="myBtn" class="btn"  style="float:left" onclick="openPage('../export/ExportOverdue.jsp')">DOWNLOAD REPORT</button>
@@ -67,7 +68,9 @@ String connectionUrl = "jdbc:mysql://localhost:3306/";
 String dbName = "lib";
 String userId = "root";
 String password = "password";
-
+/* String mname=request.getParameter("mname");
+System.out.println("HHHHH"+mname);
+ */
 try {
 Class.forName(driverName);
 } catch (ClassNotFoundException e) {
@@ -110,7 +113,7 @@ while(resultSet.next()){
 <tr>
 <td><%=resultSet.getString("bookno") %></td>
 <td><%=resultSet.getString("bookname") %></td>
-<td><a href="../AdminDashboard/Defaulters.jsp" id="myHref"><%=resultSet.getString("mname") %></a></td>
+<td><a href="../AdminDashboard/Defaulters.jsp?mname=<%=resultSet.getString("mname")%>"" ><%=resultSet.getString("mname") %></a></td>
 <td><%=resultSet.getString("expreturndate") %></td>
 <td><%=resultSet.getString("days") %></td>
 
