@@ -7,7 +7,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +98,8 @@ String connectionUrl = "jdbc:mysql://localhost:3306/";
 String dbName = "lib";
 String userId = "root";
 String password = "password";
-String selDate=request.getParameter("dt");
+String report=request.getParameter("dt");
+System.out.println("HHHHH"+report);
 String dpf=request.getParameter("frum");
 String dpt=request.getParameter("toi"); 
 try {
@@ -143,7 +144,7 @@ ResultSet resultSet = null;
 										<form action="../AdminDashboard/AdminPage.jsp">
 											<div style="float: left; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: left">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more" style="float: left">
 													ADMIN
 													<!-- SQL -->
 
@@ -184,7 +185,7 @@ e.printStackTrace();
 										<form action="../AdminLibApplication/LibApplication.jsp">
 											<div style="float: center; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: center">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more" style="float: center">
 													LIBRARIAN
 													<%
 try{ 
@@ -217,7 +218,7 @@ e.printStackTrace();
 										<form action="../AdminMemApplication/MemApplication.jsp">
 											<div style="float: right; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: right">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more" style="float: right">
 													MEMBERS
 													<%
 try{ 
@@ -268,7 +269,7 @@ e.printStackTrace();
 										<form action="../AdminBookApplication/BookApplication.jsp">
 											<div style="float: left; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: left">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more about quantity in hand" style="float: left">
 													TOTAL BOOKS
 													<%
 try{ 
@@ -300,7 +301,7 @@ e.printStackTrace();
 										<form action="../AdminTransApplication/TransApplication.jsp">
 											<div style="float: center; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: center">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more" style="float: center">
 													ISSUED BOOKS<%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
@@ -477,7 +478,17 @@ while(resultSet.next()){
 												<td><%=resultSet.getString("bookname") %></td>
 												<td><%=resultSet.getString("mname") %></td>
 												<td><%=resultSet.getDate("transactiondate") %></td>
-												<td><%=resultSet.getDate("ReturnDate")%></td>
+												
+												
+												<%
+												if(resultSet.getDate("ReturnDate") == null){
+												%>
+												<td>Not returned</td>
+												<% } %>
+												<%  if(resultSet.getDate("ReturnDate") != null) { %>
+												<td><%=resultSet.getDate("ReturnDate") %></td>
+												<%} %>
+											 
 											</tr>
 
 
@@ -517,11 +528,43 @@ e.printStackTrace();
 							<br>
 							<!--/Card image-->
 							<!--row 1 over-->
-
-							<div class="row-md-7">
-								<!--Date pickers-->
-
+						</div>
+						<!--row 2-->
+						<div class="row-md-7">
+							<!--charts-->
+							
+							<div
+								class="view view-cascade py-3 gradient-card-header info-color-dark mb-4">
+								<h5 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									CHARTS</h5>
 							</div>
+							<p>
+ <form method="post">           
+  <select name="dt" class="mdb-select colorful-select dropdown-info">
+	  <option value="" disabled>Choose the Report you want to see</option>
+	  <option value="0">Books available VS issued by Genre</option>
+	  <option value="1">No of Books Issued past 12 weeks</option>
+	  <option value="2">Books by popularity past 12 months</option>
+  </select>
+<input type="submit" value="Transaction Records">
+</form>
+</p> 
+	
+<c:if test = "${param.dt == 0}">
+  <%--  <c:out value="this is report 0"/> --%>
+   <jsp:include page="../Charts/charttrial.html" />
+    <%-- <jsp:include page="charttrial2.html" /> --%>
+ </c:if>
+ <c:if test = "${param.dt == 1}">
+   <jsp:include page="../Charts/ColChart.html" />
+</c:if>
+<c:if test = "${param.dt == 2}">
+   <jsp:include page="../Charts/ColChart2.html" />
+</c:if>
+							
+							<br>
+							<!--/Card image-->
+							<!--row 1 over-->
 						</div>
 
 					</div>
@@ -548,6 +591,10 @@ e.printStackTrace();
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script>
+		
+		$(function(){
+			$('[data-toggle="tooltip"]').tooltip()
+		})
     $( function() {
         $( "#datepicker" ).datepicker();
       } );
@@ -574,11 +621,7 @@ e.printStackTrace();
           window.location.href = "http://localhost:8563/And/try1.jsp?dymanicValue=" + dpf; 
           } */
     </script>
-		<script>
-  $(document).ready(function () {
-	  $('.mdb-select').material_select();
-	  });
-  </script>
+		
 </body>
 
 </html>

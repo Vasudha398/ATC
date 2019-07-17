@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi" async></script>
+        <script type="text/javascript">
+            var queryObject="";
+            var queryObjectLen="";
+            $.ajax({
+                type : 'POST',
+                url : '../Charts/BooksPerWeek.jsp',
+                dataType:'json',
+                success : function(data) {
+                	console.log(JSON.stringify(data,4,3));
+                    queryObject = eval('(' + JSON.stringify(data) + ')');
+                    
+                    queryObjectLen = queryObject.bookpw.length;
+                },
+                    error : function(xhr, type) {
+                    alert('server error occoured');
+                }
+            }); 
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawAnnotations);
+
+            function drawAnnotations() {
+                  var data = new google.visualization.DataTable();
+                  data.addColumn('string', 'transactiondate');
+                  data.addColumn('number', 'Books issued');
+                  data.addColumn({type: 'string', role: 'annotation'});
+                  data.addColumn({type: 'string', role: 'annotation'});
+                  for(var i=0;i<queryObjectLen;i++)
+	                {
+	                   /*  var week_of_month = queryObject.bookpw[i].week_of_month; */
+	                     var transactiondate = queryObject.bookpw[i].transactiondate;
+	                    var quantity = queryObject.bookpw[i].quantity;
+	                    var week_of_month = queryObject.bookpw[i].week_of_month;
+	                    var MName = queryObject.bookpw[i].MName;
+	                    
+	                    data.addRows([
+	                        [transactiondate,parseInt(quantity),parseInt(week_of_month)+" wk",MName]
+	                    ]);
+	                }
+
+                /*   data.addRows([
+                    [1,  .5],
+                    [2,      .8],
+                    [3,   1],
+                    [4,   2.25 ],
+                    [5,  2.25],
+                    [6,     3],
+                    [7,   6.25],
+                    [8,       5],
+                    [9,   3.5],
+                    [10,  4],
+                  ]);
+ */
+                  var options = {
+                    title: 'No. of books issued per week for last 12 weeks',
+                    annotations: {
+                      alwaysOutside: true,
+                      textStyle: {
+                        fontSize: 14,
+                        color: '#000',
+                        auraColor: 'none'
+                      }
+                    },
+                    hAxis: {
+                      title: 'Week of the month',
+                      //format: 'h:mm a',
+                      viewWindow: {
+                        min: [7, 30, 0],
+                        max: [17, 30, 0]
+                      }
+                    },
+                    vAxis: {
+                      title: 'Number of books issued'
+                    }
+                  };
+
+                  var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                  chart.draw(data, options);
+                }
+ 
+        </script>
+        
+        </head>
+        <body>
+              <div id="chart_div"></div>
+         </body>
+        </html>

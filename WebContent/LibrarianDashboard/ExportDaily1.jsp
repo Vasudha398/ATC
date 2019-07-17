@@ -26,11 +26,11 @@
   <!-- Your custom styles (optional) -->
   <link href="../css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script>
+   <script>
 function greeting(){
 	alert("Your file will be downloaded in csv folder.");
 }
-</script> 
+</script>
   <style type="text/css">
 .button {
   background-color: DodgerBlue;
@@ -161,7 +161,7 @@ fw.append('\n');
 fw.flush();
 fw.close();
 conn.close();
-response.sendRedirect("../AdminDashboard/DashAdm.jsp");
+response.sendRedirect("../LibrarianDashboard/ExecDash.jsp");
 } catch (Exception e) {
 e.printStackTrace();
 }
@@ -194,11 +194,7 @@ e.printStackTrace();
           });                   
         });
 </script>
-<script>
-  $(document).ready(function () {
-	  $('.mdb-select').material_select();
-	  });
-</script>
+
 </body>
 
 </html>

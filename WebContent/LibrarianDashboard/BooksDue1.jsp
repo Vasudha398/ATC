@@ -34,7 +34,7 @@ display: block;
 </style>
 <script>
 function greeting(){
-    alert("Kindly create a CSV folder in your C directory. Your file will be downloaded in csv folder.");
+	alert("Kindly create a CSV folder in your C directory. Your file will be downloaded in csv folder.");
 }
 </script>
 <title>Insert title here</title>
@@ -47,8 +47,8 @@ function greeting(){
          out.print( "<h2 align=\"center\">" + ft.format(dNow) + "</h2>"); 
       %>
 <div style=" float:left;width:280px">
-<form name="TrainerMenu" action="/HelloJSP/export/ExportOverdue.jsp" method="post" onsubmit="greeting()"> 
-<button id="myBtn" class="btn"  style="float:left" onclick="openPage('ExportOverdue.jsp')">DOWNLOAD REPORT</button>
+<form name="TrainerMenu" action="/HelloJSP/exportLib/ExportOverdue1.jsp" method="post" onsubmit="greeting()"> 
+<button id="myBtn" class="btn"  style="float:left" onclick="openPage('ExportOverdue1.jsp')">DOWNLOAD REPORT</button>
 </form>
 </div>
 <br>

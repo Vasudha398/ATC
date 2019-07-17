@@ -53,9 +53,8 @@
 <body>
 <div class="topnav" id="currlink">
   <a href="../navlibrarian.jsp">Home</a>
-  <a href="../LibrarianDashboard/LibAdmn.jsp">Admin Dashboard</a>
-  <a href="../LibrarianDashboard/ExecDash2.jsp">Executive Dashboard</a>
-  <a href="#about">Reporting</a>
+  <a href="../LibrarianDashboard/ExecDash.jsp">Librarian Dashboard</a>
+ 
 </div>
 
 <!--SQL CONNECTION-->

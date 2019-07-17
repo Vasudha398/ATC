@@ -15,7 +15,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Admin Dashboard</title>
+  <title>Executive Dashboard</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -111,34 +111,35 @@ Connection connection = null;
 Statement statement = null;
 ResultSet resultSet = null;
 %>
+<jsp:include page="../LibrarianDashboard/HeaderPage2.jsp"/> 
 
-		<jsp:include page="HeaderPage1.jsp" />
 
-		<!--Main layout-->
-		<main>
-		<div class="container-fluid">
-			<!--Section: Main panel-->
-			<section class="card card-cascade narrower mb-5">
+  <!--Main layout-->
+<main>
+  <div class="container-fluid">
 
-				<!--Grid row-->
-				<div class="row">
-					<!--Grid column-->
-					<div class="col-md-6">
+
+     <!--Section: Main panel-->
+<section class="card card-cascade narrower mb-5">
+
+  <!--Grid row-->
+  <div class="row">
+
+<!--Grid column-->
+	<div class="col-md-6">
 						<div class="row-md-5">
 							<!--Panel Header row 1 management-->
-
-							<div
+<div
 								class="view view-cascade py-3 gradient-card-header info-color-dark">
 								<h5 class="mb-0 mr-5">&nbsp;&nbsp;MANAGEMENT OVERVIEW</h5>
 							</div>
 							<!--/Panel Header-->
 							<!--Panel content-->
 							<div class="card-body">
-
-								<!--Grid row-->
+	<!--Grid row-->
 								<div class="row">
 
-									<!--Grid column 1-->
+									<%-- <!--Grid column 1-->
 									<div class="col-md-4 mb-1">
 										<!--no of admins-->
 										<form action="../AdminDashboard/AdminPage.jsp">
@@ -147,7 +148,6 @@ ResultSet resultSet = null;
 												<button id="myBtn" class="button" style="float: left">
 													ADMIN
 													<!-- SQL -->
-
 
 													<%
 try{ 
@@ -177,15 +177,15 @@ e.printStackTrace();
 
 
 									</div>
-									<!--Grid column 1-->
+									<!--Grid column 1--> --%>
 									<!-- Grid column 2 -->
 									<div class="col-md-4 mb-4">
 										<!--no of librarians-->
 
-										<form action="../AdminLibApplication/LibApplication.jsp">
+									<form action="../LibrarianDashboard/LibPage.jsp">
 											<div style="float: center; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: center">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more" style="float: center">
 													LIBRARIAN
 													<%
 try{ 
@@ -215,10 +215,10 @@ e.printStackTrace();
 									<!-- Grid column 3 -->
 									<div class="col-md-4 mb-4">
 										<!--no of members-->
-										<form action="../AdminMemApplication/MemApplication.jsp">
+										<form action="../LibrarianMemApplication/MemApplication.jsp">
 											<div style="float: right; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: right">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more" style="float: right">
 													MEMBERS
 													<%
 try{ 
@@ -266,10 +266,10 @@ e.printStackTrace();
 									<!--Grid column 1-->
 									<div class="col-md-4 mb-4">
 										<!--no of admins-->
-										<form action="../AdminBookApplication/BookApplication.jsp">
+										<form action="../LibrarianBookApplication/BookApplication.jsp">
 											<div style="float: left; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: left">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more about Quantity in Hand" style="float: left">
 													TOTAL BOOKS
 													<%
 try{ 
@@ -298,10 +298,10 @@ e.printStackTrace();
 									<!-- Grid column 2 -->
 									<div class="col-md-4 mb-4">
 										<!--no of librarians-->
-										<form action="../AdminTransApplication/TransApplication.jsp">
+										<form action="../LibrarianTransApplication/TransApplication.jsp">
 											<div style="float: center; width: 140px;">
 												&nbsp;&nbsp;
-												<button id="myBtn" class="button" style="float: center">
+												<button id="myBtn" class="button" data-toggle="tooltip" data-placement="top" title="click to know more" style="float: center">
 													ISSUED BOOKS<%
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
@@ -330,7 +330,7 @@ e.printStackTrace();
 									<!-- Grid column 3 -->
 									<div class="col-md-4 mb-4">
 										<!--no of members-->
-										<form action="../AdminMemApplication/MemApplication.jsp">
+										<form action="../LibrarianMemApplication/MemApplication.jsp">
 											<%-- <div style="float: right; width:140px;">
 &nbsp;&nbsp;<button id="myBtn" class="button" style="float:right">BOOKS OVERDUE<%
 try{ 
@@ -418,12 +418,11 @@ e.printStackTrace();
 											<br>
 											<br>
 											<br>
-											<form name="TrainerMenu"
-												action="/HelloJSP/AdminDashboard/ExportDaily.jsp"
-												method="post" onsubmit="greeting()">
+						<!-- CHANGE THIS -->			<form name="TrainerMenu" action="/HelloJSP/LibrarianDashboard/ExportDaily1.jsp"
+									method="post" >
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<button id="myBtn" class="btn" style="float: left"
-													onclick="openPage('ExportDaily.jsp')">DOWNLOAD
+													onclick="openPage('ExportDaily1.jsp')">DOWNLOAD
 													REPORT</button>
 											</form>
 										</div>
@@ -524,7 +523,7 @@ e.printStackTrace();
 								<h5 class="mb-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									ONGOING DUES</h5>
 							</div>
-							<jsp:include page="BooksDue.jsp" />
+							<jsp:include page="BooksDue1.jsp" />
 							<br>
 							<!--/Card image-->
 							<!--row 1 over-->
@@ -558,6 +557,9 @@ e.printStackTrace();
  <c:if test = "${param.dt == 1}">
    <jsp:include page="../Charts/ColChart.html" />
 </c:if>
+<c:if test = "${param.dt == 2}">
+   <jsp:include page="../Charts/ColChart2.html" />
+</c:if>
 							
 							<br>
 							<!--/Card image-->
@@ -588,6 +590,9 @@ e.printStackTrace();
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script>
+		$(function(){
+			$('[data-toggle="tooltip"]').tooltip()
+		})
     $( function() {
         $( "#datepicker" ).datepicker();
       } );
