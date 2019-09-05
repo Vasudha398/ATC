@@ -1,2 +1,2 @@
 # ATC
-This is the project which is basically my project in this we will be going to create the Library Management System in JSP, MySQL, Jquery and JSON with a lots of HTML,CSS and Javascript
+This project was built in accomodation with my teammate Rahul, I added an interactive dashboard part to the Library Management System. The dashboard was made using JSP, JavaScript, MySql and HTML. I used JSON and Google charts API for making customised charts. 
